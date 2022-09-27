@@ -1,0 +1,1 @@
+claim_all.js
