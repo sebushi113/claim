@@ -1,1 +1,1 @@
-claim_all.js
+web: node claim_all.js
