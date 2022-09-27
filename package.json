@@ -13,7 +13,6 @@
   "main": "claim.js",
   "devDependencies": {},
   "scripts": {
-    "postinstall": "npm run build",
     "start": "node claim.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
