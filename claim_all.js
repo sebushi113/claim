@@ -6,7 +6,7 @@ import * as cron from "node-cron";
 import moment from "moment";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
-import * as notify from "../telegram/telegraf/notify.js";
+// import * as notify from "../telegram/telegraf/notify.js";
 
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
@@ -76,7 +76,7 @@ async function cs1_claim_rplanet() {
       setTimeout(() => {
         console.log(`  🦁  | ${moment(new Date()).format(date)} | error`);
         console.log(error);
-        notify.sendMessage(error);
+        // notify.sendMessage(error);
         cs1_claim_rplanet();
       }, 10000);
     }
@@ -127,7 +127,7 @@ async function cd3_claim_rplanet() {
       setTimeout(() => {
         console.log(`  🐵  | ${moment(new Date()).format(date)} | error`);
         console.log(error);
-        notify.sendMessage(error);
+        // notify.sendMessage(error);
         cd3_claim_rplanet();
       }, 10000);
     }
@@ -193,7 +193,7 @@ async function all_claim_greenrabbit() {
       setTimeout(() => {
         console.log(` 🦁🐵 | ${moment(new Date()).format(date)} | error`);
         console.log(error);
-        notify.sendMessage(error);
+        // notify.sendMessage(error);
         all_claim_greenrabbit();
       }, 10000);
     }
