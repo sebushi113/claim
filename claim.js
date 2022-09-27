@@ -205,9 +205,9 @@ async function all_claim_greenrabbit() {
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
 
-cron.schedule("5 * * * *", cs1_claim_rplanet);
+cron.schedule("3 * * * *", cs1_claim_rplanet);
 console.log("  🦁  | waiting to claim on min 3...");
-cron.schedule("5 0,2,4,6,8,10,12,14,16,18,20,22 * * *", cd3_claim_rplanet);
+cron.schedule("3 0,2,4,6,8,10,12,14,16,18,20,22 * * *", cd3_claim_rplanet);
 console.log("  🐵  | waiting to claim on min 3 of even hour...");
 
 cron.schedule("0 17 * * */1", all_claim_greenrabbit);

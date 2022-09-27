@@ -1,1 +1,1 @@
-worker: node claim_all.js
+worker: node claim.js
