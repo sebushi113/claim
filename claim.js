@@ -17,10 +17,10 @@ const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
 // const rpc = new JsonRpc("https://wax.greymass.com"); //required to read blockchain state
 const api = new Api({ rpc, signatureProvider }); //required to submit transactions
 
-const cs1 = "cryptosebus1";
-const cs1_perm = "claim";
-const cd3 = "cryptodysia3";
-const cd3_perm = "claim";
+const cs1 = process.env.cs1;
+const cs1_perm = process.env.cs1perm;
+const cd3 = process.env.cd3;
+const cd3_perm = process.env.cd3perm;
 
 // let date = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
 // let current_date = date.format("YYYY-MM-DD HH:mm:ss");
