@@ -174,7 +174,7 @@ async function all_claim_greenrabbit() {
     );
     // console.log(`> 🦁🐵 GR claimed  🐰 | ${moment(new Date()).format(date)}`); //🦁
     console.log(
-      ` 🦁🐵 | ${moment(new Date()).format(date)} | ${
+      ` 🦁🐵| ${moment(new Date()).format(date)} | ${
         transaction.transaction_id
       }`
     );
@@ -187,11 +187,11 @@ async function all_claim_greenrabbit() {
       error.message ==
       "assertion failure with message: nothing to claim just yet"
     ) {
-      console.log(" ✅✅ | nothing to claim, waiting...");
+      console.log(" ✅✅| nothing to claim, waiting...");
       // console.log("- 🦁🐵 GR trying to claim again at 17:03:00..."); //⏩
     } else {
       setTimeout(() => {
-        console.log(` 🦁🐵 | ${moment(new Date()).format(date)} | error`);
+        console.log(` 🦁🐵| ${moment(new Date()).format(date)} | error`);
         console.log(error);
         // notify.sendMessage(error);
         all_claim_greenrabbit();
@@ -211,7 +211,7 @@ cron.schedule("3 0,2,4,6,8,10,12,14,16,18,20,22 * * *", cd3_claim_rplanet);
 console.log("  🐵  | waiting to claim on min 3 of even hour...");
 
 cron.schedule("0 17 * * */1", all_claim_greenrabbit);
-console.log(" 🦁🐵 | waiting to claim at 17:00:00...");
+console.log(" 🦁🐵| waiting to claim at 17:00:00...");
 
 // console.log(
 //   `🦁🐵 | ${moment(new Date()).format(
