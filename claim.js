@@ -167,7 +167,7 @@ async function all_claim_greenrabbit() {
       { useLastIrreversible: true, expireSeconds: 300 }
     );
     console.log(
-      ` 🦁🐵 \x1b[32m | ${moment(new Date()).format(date)} | ${
+      ` 🦁🐵\x1b[32m | ${moment(new Date()).format(date)} | ${
         transaction.transaction_id
       }\x1b[0m`
     );
@@ -183,7 +183,7 @@ async function all_claim_greenrabbit() {
     } else {
       setTimeout(() => {
         console.log(
-          ` 🦁🐵 \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
+          ` 🦁🐵\x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
         );
         console.log(error);
         // notify.sendMessage(error);
@@ -197,13 +197,6 @@ async function all_claim_greenrabbit() {
 // cs1_claim_rplanet();
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
-console.log(`  🦁   | ${moment(new Date()).format(date)} | error`);
-console.log(
-  ` 🦁🐵 \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
-);
-console.log(` 🦁🐵 \x1b[32m | ${moment(new Date()).format(date)}\x1b[0m`);
-console.log(`  🐵  \x1b[32m | ${moment(new Date()).format(date)}\x1b[0m`);
-console.log(`  🦁  \x1b[32m | ${moment(new Date()).format(date)}\x1b[0m`);
 
 console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
 
