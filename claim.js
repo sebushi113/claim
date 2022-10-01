@@ -6,7 +6,7 @@ import * as cron from "node-cron";
 import moment from "moment";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
-// import * as notify from "../telegram/telegraf/notify.js";
+import * as notify from "/telegraf-notify/notify.js";
 
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
@@ -60,7 +60,7 @@ async function cs1_claim_rplanet() {
     }, 10000);
   } catch (error) {
     if (error.message == "assertion failure with message: E_NOTHING_TO_CLAIM") {
-      console.log(" 🦁✅  | nothing to claim, waiting...");
+      console.log(" 🦁✅ | nothing to claim, waiting...");
       // console.log("- 🦁   RP nothing to claim ✅");
       // console.log(
       //   `- 🦁   RP trying to claim again at ${moment(new Date())
@@ -197,6 +197,9 @@ async function all_claim_greenrabbit() {
 // cs1_claim_rplanet();
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
+
+let error = "test";
+notify.sendMessage(error);
 
 console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
 
