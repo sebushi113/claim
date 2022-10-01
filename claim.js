@@ -11,9 +11,9 @@ dotenv.config();
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
 const signatureProvider = new JsSignatureProvider(privateKeys);
-const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
+// const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
 // const rpc = new JsonRpc("https://wax.eosusa.news/", { fetch }); //https://wax.eosio.online/endpoints
-// const rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+const rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
 // const rpc = new JsonRpc("https://wax.greymass.com"); //required to read blockchain state
 const api = new Api({ rpc, signatureProvider }); //required to submit transactions
 
@@ -196,3 +196,14 @@ console.log("  🐵  | waiting to claim on min 3 of even hour...");
 
 cron.schedule("0 17 * * */1", all_claim_greenrabbit);
 console.log(" 🦁🐵 | waiting to claim at 17:00:00...");
+
+/*
+git add .
+git commit -am "make it better"
+git push heroku master
+heroku scale worker=1
+heroku logs --tail
+heroku run node claim.js //?
+heroku restart
+heroku scale web=0
+*/
