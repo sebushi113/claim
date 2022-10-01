@@ -1,3 +1,5 @@
 *.env
+claim[PUSHED_TO_HEROKU].js
 # node_modules
 # Procfile
+# git rm -r --cached .
