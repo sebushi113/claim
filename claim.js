@@ -11,11 +11,10 @@ dotenv.config();
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
 const signatureProvider = new JsSignatureProvider(privateKeys);
-const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
+// const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
 // const rpc = new JsonRpc("https://wax.eosusa.news/", { fetch }); //https://wax.eosio.online/endpoints
-// const rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+const rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
 // const rpc = new JsonRpc("https://wax.greymass.com"); //required to read blockchain state
-console.log(rpc);
 const api = new Api({ rpc, signatureProvider }); //required to submit transactions
 
 const cs1 = process.env.cs1;
@@ -192,6 +191,8 @@ async function all_claim_greenrabbit() {
 cs1_claim_rplanet();
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
+
+console.log("using: " + "\x1b[36m", rpc.endpoint, "\x1b[0m");
 
 cron.schedule("3 * * * *", cs1_claim_rplanet);
 console.log("  🦁   | waiting to claim on min 3...");
