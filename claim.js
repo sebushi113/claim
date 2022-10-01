@@ -6,7 +6,7 @@ import * as cron from "node-cron";
 import moment from "moment";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
-import * as notify from "./notify";
+import * as notify from "./notify.js";
 
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
