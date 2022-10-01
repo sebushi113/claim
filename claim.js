@@ -206,4 +206,5 @@ heroku logs --tail
 heroku run node claim.js //?
 heroku restart
 heroku scale web=0
+git push heroku main
 */
