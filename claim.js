@@ -7,7 +7,7 @@ import moment from "moment";
 import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config();
 // import * as notify from "./notify.js";
-import sendMessage from "./notify";
+import sendMessage from "./notify.js";
 // const notify = require("./notify");
 const privateKeys = [process.env.cs1claim, process.env.cd3claim];
 
