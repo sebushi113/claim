@@ -199,7 +199,7 @@ async function all_claim_greenrabbit() {
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
 
-let error = "test";
+let error = "heroku notify test";
 notify.sendMessage(error);
 
 console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
