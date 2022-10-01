@@ -192,7 +192,7 @@ async function all_claim_greenrabbit() {
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
 
-console.log("\x1b[36m", "using| " + rpc.endpoint, "\x1b[0m");
+console.log("\x1b[36m", "using | " + rpc.endpoint, "\x1b[0m");
 
 cron.schedule("3 * * * *", cs1_claim_rplanet);
 console.log("  🦁   | waiting to claim on min 3...");
