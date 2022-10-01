@@ -1,4 +1,2 @@
 *.env
-claim[PUSHED_TO_HEROKU].js
-# node_modules
-# Procfile
+HEROKU_claim.js
