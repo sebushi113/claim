@@ -192,7 +192,7 @@ async function all_claim_greenrabbit() {
 // cd3_claim_rplanet();
 // all_claim_greenrabbit();
 
-console.log("\x1b[36m", "rpc  | " + rpc.endpoint, "\x1b[0m");
+console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
 
 cron.schedule("3 * * * *", cs1_claim_rplanet);
 console.log("  🦁   | waiting to claim on min 3...");
@@ -205,12 +205,15 @@ console.log(" 🦁🐵 | waiting to claim at 13:00:00...");
 /*
 git add .
 git commit -am "make it better"
-git push heroku master
+git push heroku main [NEW]
+git push heroku master [OLD]
 heroku scale worker=1
-heroku logs --tail
-heroku run node claim.js //?
-heroku restart
 heroku scale web=0
-git push heroku main //?
+heroku logs --tail
+heroku restart
 git push --force heroku
+
+// refresh .gitignore
+git rm -r --cached .
+git add .
 */
