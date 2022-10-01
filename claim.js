@@ -60,7 +60,7 @@ async function cs1_claim_rplanet() {
     }, 10000);
   } catch (error) {
     if (error.message == "assertion failure with message: E_NOTHING_TO_CLAIM") {
-      console.log("  ✅   | nothing to claim, waiting...");
+      console.log(" 🦁✅  | nothing to claim, waiting...");
       // console.log("- 🦁   RP nothing to claim ✅");
       // console.log(
       //   `- 🦁   RP trying to claim again at ${moment(new Date())
@@ -107,7 +107,7 @@ async function cd3_claim_rplanet() {
     }, 10000);
   } catch (error) {
     if (error.message == "assertion failure with message: E_NOTHING_TO_CLAIM") {
-      // console.log("  ✅  | nothing to claim | waiting...");
+      console.log(" 🐵✅ | nothing to claim | waiting...");
       // console.log(
       //   `- 🐵   RP trying to claim again at ${moment(new Date())
       //     .add(2, "hours")
