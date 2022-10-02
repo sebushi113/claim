@@ -51,6 +51,7 @@ async function cs1_claim_rplanet() {
       // { blocksBehind: 3, expireSeconds: 30 }
       { useLastIrreversible: true, expireSeconds: 300 }
     );
+    console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
     console.log(
       `  🦁  \x1b[32m | ${moment(new Date()).format(date)} | ${
         transaction.transaction_id
@@ -113,6 +114,7 @@ async function cd3_claim_rplanet() {
       // { blocksBehind: 3, expireSeconds: 30 }
       { useLastIrreversible: true, expireSeconds: 300 }
     );
+    console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
     console.log(
       `  🐵  \x1b[32m | ${moment(new Date()).format(date)} | ${
         transaction.transaction_id
@@ -187,6 +189,7 @@ async function all_claim_greenrabbit() {
       // { blocksBehind: 3, expireSeconds: 30 }
       { useLastIrreversible: true, expireSeconds: 300 }
     );
+    console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
     console.log(
       ` 🦁🐵\x1b[32m | ${moment(new Date()).format(date)} | ${
         transaction.transaction_id
