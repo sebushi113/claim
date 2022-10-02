@@ -52,9 +52,13 @@ async function cs1_claim_rplanet() {
       { useLastIrreversible: true, expireSeconds: 300 }
     );
     console.log(
-      `  🦁  \x1b[32m | ${moment(new Date()).format(date)} | ${
-        transaction.transaction_id
-      }\x1b[0m`
+      "  🦁  ",
+      "\x1b[32m",
+      " | " +
+        moment(new Date()).format(date) +
+        " | " +
+        transaction.transaction_id +
+        "\x1b[0m"
     );
     await sleep(10000);
     await cs1_claim_rplanet();
@@ -246,12 +250,36 @@ async function unknown_error() {
 // let error = "test";
 // notify.sendMessage(error);
 
-console.log("\x1b[36m", "rpc | " + rpc.endpoint, "\x1b[0m");
+console.log(
+  "  🦁",
+  "\x1b[32m",
+  "| " +
+    moment(new Date()).format(date) +
+    " | " +
+    moment(new Date()).format(date) +
+    "\x1b[0m"
+);
+console.log(" 🦁✅ | nothing to claim, waiting...");
+console.log(
+  "  🦁",
+  "\x1b[31m",
+  "| " + moment(new Date()).format(date) + " | api error",
+  "\x1b[0m"
+);
+console.log(
+  "  🦁",
+  "\x1b[31m",
+  "| " + moment(new Date()).format(date) + " | unknown error",
+  "\x1b[0m"
+);
+console.log("\x1b[33m%s\x1b[0m", "  🔁  | switching api -> " + rpc.endpoint);
+
+console.log("\x1b[36m", " rpc | " + rpc.endpoint, "\x1b[0m");
 
 cron.schedule("3 * * * *", cs1_claim_rplanet);
-console.log("  🦁   | waiting to claim on min 3...");
+console.log("  🦁  | waiting to claim on min 3...");
 cron.schedule("3 0,2,4,6,8,10,12,14,16,18,20,22 * * *", cd3_claim_rplanet);
-console.log("  🐵   | waiting to claim on min 3 of even hour...");
+console.log("  🐵  | waiting to claim on min 3 of even hour...");
 
 cron.schedule("0 17 * * */1", all_claim_greenrabbit);
 console.log(" 🦁🐵 | waiting to claim at 13:00:00...");
