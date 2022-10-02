@@ -68,19 +68,21 @@ async function cs1_claim_rplanet() {
       //     .add(1, "hours")
       //     .format("HH")}:03:00...`
       // ); //⏩
-      // } else if (
-      //   error.message ==
-      //   "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
-      // ) {
-      //   let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+    } else if (
+      error.message ==
+      "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
+    ) {
+      // let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+      let error_message = "api error";
+      notify.sendMessage(error_message);
+      await sleep(10000);
+      await cs1_claim_rplanet();
     } else {
       // setTimeout(() => {
       console.log(
         `  🦁  \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
       );
       // console.log(error);
-      let error_message = error.message;
-      notify.sendMessage(error_message);
       await sleep(10000);
       await cs1_claim_rplanet();
       // }, 10000);
