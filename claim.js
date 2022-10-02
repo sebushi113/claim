@@ -72,7 +72,8 @@ async function cs1_claim_rplanet() {
       error.message ==
       "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
     ) {
-      // let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+      let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+      console.log(error);
       let error_message = "api error";
       notify.sendMessage(error_message);
       await sleep(10000);
