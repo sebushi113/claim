@@ -3,7 +3,7 @@ import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-
 dotenv.config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-const chat_id = -642466925;
+const chat_id = process.env.chat_id;
 // const message = "error: *claim experienced an error*";
 // const error = "error";
 
@@ -13,7 +13,7 @@ export async function sendMessage(error) {
   });
 }
 
-// sendMessage();
+// sendMessage(error);
 
 // Enable graceful stop
 // process.once("SIGINT", () => bot.stop("SIGINT"));
