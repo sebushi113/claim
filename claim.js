@@ -225,7 +225,7 @@ async function all_claim_greenrabbit() {
 async function api_error() {
   rpc = new JsonRpc("http://wax.api.eosnation.io", { fetch });
   api = new Api({ rpc, signatureProvider }); //required to submit transactions
-  console.log("\x1b[33m%s\x1b[0m", "` 🔁   | switching api -> " + rpc.endpoint);
+  console.log("\x1b[33m%s\x1b[0m", "  🔁  | switching api -> " + rpc.endpoint);
   let api_error_message =
     "api error 🔁\nswitching api to: http://wax\\.api\\.eosnation\\.io";
   notify.sendMessage(api_error_message);
