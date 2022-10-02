@@ -138,7 +138,7 @@ async function cd3_claim_rplanet() {
         `  🐵  \x1b[31m | ${moment(new Date()).format(date)} | api error\x1b[0m`
       );
       await api_error();
-      await cs1_claim_rplanet();
+      await cd3_claim_rplanet();
     } else {
       console.log(
         `  🐵  \x1b[31m | ${moment(new Date()).format(
@@ -211,7 +211,7 @@ async function all_claim_greenrabbit() {
         ` 🦁🐵\x1b[31m | ${moment(new Date()).format(date)} | api error\x1b[0m`
       );
       await api_error();
-      await cs1_claim_rplanet();
+      await all_claim_greenrabbit();
     } else {
       console.log(
         ` 🦁🐵\x1b[31m | ${moment(new Date()).format(
@@ -242,8 +242,8 @@ async function unknown_error() {
   await sleep(10000);
 }
 
-// cs1_claim_rplanet();
-// cd3_claim_rplanet();
+cs1_claim_rplanet();
+cd3_claim_rplanet();
 // all_claim_greenrabbit();
 
 // let error = "test";
