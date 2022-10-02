@@ -68,11 +68,11 @@ async function cs1_claim_rplanet() {
       //     .add(1, "hours")
       //     .format("HH")}:03:00...`
       // ); //⏩
-    } else if (
-      error.message ==
-      "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
-    ) {
-      let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+      // } else if (
+      //   error.message ==
+      //   "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
+      // ) {
+      //   let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
     } else {
       setTimeout(() => {
         console.log(
