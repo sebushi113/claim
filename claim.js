@@ -9,14 +9,14 @@ dotenv.config();
 import * as notify from "./notify.js";
 // import sendMessage from "./notify";
 // const notify = require("./notify");
-const privateKeys = [process.env.cs1claim, process.env.cd3claim];
+const privateKeys = [process.env.cs1c, process.env.cd3c];
 
 const signatureProvider = new JsSignatureProvider(privateKeys);
-const rpc = new JsonRpc("https://wax.greymass.com", { fetch });
+let rpc = new JsonRpc("https://wax.greymass.com", { fetch });
 // const rpc = new JsonRpc("https://wax.eosusa.news/", { fetch }); //https://wax.eosio.online/endpoints
 // const rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
 // const rpc = new JsonRpc("https://wax.greymass.com"); //required to read blockchain state
-const api = new Api({ rpc, signatureProvider }); //required to submit transactions
+let api = new Api({ rpc, signatureProvider }); //required to submit transactions
 
 const cs1 = process.env.cs1;
 const cs1_perm = process.env.cs1perm;
@@ -56,9 +56,8 @@ async function cs1_claim_rplanet() {
         transaction.transaction_id
       }\x1b[0m`
     );
-    setTimeout(() => {
-      cs1_claim_rplanet();
-    }, 10000);
+    await sleep(10000);
+    await cs1_claim_rplanet();
   } catch (error) {
     if (error.message == "assertion failure with message: E_NOTHING_TO_CLAIM") {
       console.log(" 🦁✅ | nothing to claim, waiting...");
@@ -72,21 +71,25 @@ async function cs1_claim_rplanet() {
       error.message ==
       "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
     ) {
-      let rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
-      console.log(error);
-      let error_message = "api error";
-      notify.sendMessage(error_message);
-      await sleep(10000);
+      console.log(
+        `  🦁  \x1b[31m | ${moment(new Date()).format(date)} | api error\x1b[0m`
+      );
+      // rpc = new JsonRpc("http://wax.api.eosnation.io/", { fetch });
+      // api = new Api({ rpc, signatureProvider }); //required to submit transactions
+      // console.log("\x1b[33m%s\x1b[0m", "switching api -> " + rpc.endpoint);
+      // let api_error_message = "api error\nswitching api -> " + rpc.endpoint;
+      // notify.sendMessage(api_error_message);
+      // await sleep(10000);
+      await api_error();
       await cs1_claim_rplanet();
     } else {
-      // setTimeout(() => {
       console.log(
-        `  🦁  \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
+        `  🦁  \x1b[31m | ${moment(new Date()).format(
+          date
+        )} | unknown error\x1b[0m`
       );
-      // console.log(error);
-      await sleep(10000);
+      await unknown_error();
       await cs1_claim_rplanet();
-      // }, 10000);
     }
   }
   // }
@@ -115,26 +118,33 @@ async function cd3_claim_rplanet() {
         transaction.transaction_id
       }\x1b[0m`
     );
-    setTimeout(() => {
-      cd3_claim_rplanet();
-    }, 10000);
+    await sleep(10000);
+    await cd3_claim_rplanet();
   } catch (error) {
     if (error.message == "assertion failure with message: E_NOTHING_TO_CLAIM") {
-      console.log(" 🐵✅ | nothing to claim | waiting...");
+      console.log(" 🐵✅ | nothing to claim, waiting...");
       // console.log(
       //   `- 🐵   RP trying to claim again at ${moment(new Date())
       //     .add(2, "hours")
       //     .format("HH")}:03:00...`
       // ); //⏩
+    } else if (
+      error.message ==
+      "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
+    ) {
+      console.log(
+        `  🐵  \x1b[31m | ${moment(new Date()).format(date)} | api error\x1b[0m`
+      );
+      await api_error();
+      await cs1_claim_rplanet();
     } else {
-      setTimeout(() => {
-        console.log(
-          `  🐵  \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
-        );
-        console.log(error);
-        notify.sendMessage(error);
-        cd3_claim_rplanet();
-      }, 10000);
+      console.log(
+        `  🐵  \x1b[31m | ${moment(new Date()).format(
+          date
+        )} | unknown error\x1b[0m`
+      );
+      await unknown_error();
+      await cd3_claim_rplanet();
     }
   }
   // }
@@ -182,27 +192,51 @@ async function all_claim_greenrabbit() {
         transaction.transaction_id
       }\x1b[0m`
     );
-    setTimeout(() => {
-      all_claim_greenrabbit();
-    }, 10000);
+    await sleep(10000);
+    await all_claim_greenrabbit();
   } catch (error) {
     if (
       error.message ==
       "assertion failure with message: nothing to claim just yet"
     ) {
       console.log(" ✅✅ | nothing to claim, waiting...");
+    } else if (
+      error.message ==
+      "estimated CPU time (0 us) is not less than the maximum billable CPU time for the transaction (0 us)"
+    ) {
+      console.log(
+        ` 🦁🐵\x1b[31m | ${moment(new Date()).format(date)} | api error\x1b[0m`
+      );
+      await api_error();
+      await cs1_claim_rplanet();
     } else {
-      setTimeout(() => {
-        console.log(
-          ` 🦁🐵\x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
-        );
-        console.log(error);
-        notify.sendMessage(error);
-        all_claim_greenrabbit();
-      }, 10000);
+      console.log(
+        ` 🦁🐵\x1b[31m | ${moment(new Date()).format(
+          date
+        )} | unknown error\x1b[0m`
+      );
+      await unknown_error();
+      await all_claim_greenrabbit();
     }
     // }
   }
+}
+
+async function api_error() {
+  rpc = new JsonRpc("http://wax.api.eosnation.io", { fetch });
+  api = new Api({ rpc, signatureProvider }); //required to submit transactions
+  console.log("\x1b[33m%s\x1b[0m", "` 🔁   | switching api -> " + rpc.endpoint);
+  let api_error_message =
+    "api error 🔁\nswitching api to: http://wax\\.api\\.eosnation\\.io";
+  notify.sendMessage(api_error_message);
+  await sleep(10000);
+}
+
+async function unknown_error() {
+  console.log(error);
+  let unknown_error_message = "unknown error\ncheck console";
+  notify.sendMessage(unknown_error_message);
+  await sleep(10000);
 }
 
 // cs1_claim_rplanet();
@@ -228,6 +262,7 @@ git commit -am "make it better"
 git push heroku main [NEW]
 git push heroku master [OLD]
 heroku scale worker=1
+heroku scale worker=0 //stop worker
 heroku scale web=0
 heroku logs --tail
 heroku restart
@@ -236,4 +271,37 @@ git push --force heroku
 // refresh .gitignore
 git rm -r --cached .
 git add .
+*/
+
+/*
+"\x1b[32m%s\x1b[0m", green string & reset
+\x1b[32m  green
+\x1b[0m   reset
+\x1b[31m  red
+
+Reset = "\x1b[0m"
+Bright = "\x1b[1m"
+Dim = "\x1b[2m"
+Underscore = "\x1b[4m"
+Blink = "\x1b[5m"
+Reverse = "\x1b[7m"
+Hidden = "\x1b[8m"
+
+FgBlack = "\x1b[30m"
+FgRed = "\x1b[31m"
+FgGreen = "\x1b[32m"
+FgYellow = "\x1b[33m"
+FgBlue = "\x1b[34m"
+FgMagenta = "\x1b[35m"
+FgCyan = "\x1b[36m"
+FgWhite = "\x1b[37m"
+
+BgBlack = "\x1b[40m"
+BgRed = "\x1b[41m"
+BgGreen = "\x1b[42m"
+BgYellow = "\x1b[43m"
+BgBlue = "\x1b[44m"
+BgMagenta = "\x1b[45m"
+BgCyan = "\x1b[46m"
+BgWhite = "\x1b[47m"
 */
