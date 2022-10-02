@@ -78,9 +78,9 @@ async function cs1_claim_rplanet() {
       console.log(
         `  🦁  \x1b[31m | ${moment(new Date()).format(date)} | error\x1b[0m`
       );
-      console.log(error);
-      let error = error.message;
-      notify.sendMessage(error);
+      // console.log(error);
+      let error_message = error.message;
+      notify.sendMessage(error_message);
       await sleep(10000);
       await cs1_claim_rplanet();
       // }, 10000);
